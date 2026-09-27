@@ -101,7 +101,7 @@ export default function Home() {
 
           <div className="flex shrink-0 items-center gap-2 sm:gap-4 lg:gap-6">
             <Link
-              href="/login"
+              href="/sign-in"
               className="hidden text-sm font-medium text-gray-900 transition-colors hover:text-indigo-600 sm:block"
             >
               Login
@@ -111,7 +111,7 @@ export default function Home() {
               asChild
               className="h-10 rounded-[9px] bg-black px-4 text-sm font-semibold text-white hover:bg-gray-800 sm:px-5"
             >
-              <Link href="/register">Get Started</Link>
+              <Link href="/sign-up">Get Started</Link>
             </Button>
           </div>
         </div>

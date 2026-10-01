@@ -32,12 +32,10 @@ export default function SignUp() {
       });
       if (result.error) {
         setError(result.error.message ?? "Failed to signup");
+      } else {
+        router.push("/dashboard");
       }
-
       
-      console.log("successful");
-      
-
     } catch (error) {
       setError("An unexpected error occurred");
     } finally {
@@ -177,7 +175,11 @@ export default function SignUp() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </form>
-
+            {error && (
+              <p role="alert" className="text-sm text-red-600">
+                {error}
+              </p>
+            )}
             <p className="mt-6 text-center text-sm text-gray-600">
               Already have an account?{" "}
               <Link

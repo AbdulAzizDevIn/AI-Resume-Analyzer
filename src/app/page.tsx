@@ -1,7 +1,6 @@
 import {
   ArrowRight,
   Check,
-  FileText,
   PlayCircle,
   Sparkles,
 } from "lucide-react";
@@ -64,58 +63,6 @@ const features = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900">
-      <header className="border-b border-gray-200 bg-white">
-        <div className="mx-auto flex min-h-[72px] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-          <Link
-            href="/"
-            className="flex shrink-0 items-center gap-2.5 sm:gap-3"
-          >
-            <div className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-gray-50">
-              <FileText className="h-5 w-5 text-indigo-600" strokeWidth={1.7} />
-
-              <span className="absolute -bottom-1 -right-1 rounded-[4px] bg-black px-1 py-0.5 text-[7px] font-bold leading-none text-white">
-                AI
-              </span>
-            </div>
-
-            <span className="text-base font-semibold tracking-[-0.03em] sm:text-lg">
-              AI Resume Analyzer
-            </span>
-          </Link>
-
-          <nav className="hidden items-center gap-8 lg:flex">
-            <Link
-              href="#how-it-works"
-              className="text-sm font-medium text-gray-600 transition-colors hover:text-black"
-            >
-              How It Works
-            </Link>
-
-            <Link
-              href="#features"
-              className="text-sm font-medium text-gray-600 transition-colors hover:text-black"
-            >
-              Features
-            </Link>
-          </nav>
-
-          <div className="flex shrink-0 items-center gap-2 sm:gap-4 lg:gap-6">
-            <Link
-              href="/sign-in"
-              className="hidden text-sm font-medium text-gray-900 transition-colors hover:text-indigo-600 sm:block"
-            >
-              Login
-            </Link>
-
-            <Button
-              asChild
-              className="h-10 rounded-[9px] bg-black px-4 text-sm font-semibold text-white hover:bg-gray-800 sm:px-5"
-            >
-              <Link href="/sign-up">Get Started</Link>
-            </Button>
-          </div>
-        </div>
-      </header>
 
       <main>
         {/* Hero */}

@@ -3,22 +3,22 @@ import { NextRequest, NextResponse } from "next/server";
 
 export default async function proxy(request: NextRequest) {
   const isDashboardPage = request.nextUrl.pathname.startsWith("/dashboard");
-
+  const analyze = request.nextUrl.pathname.startsWith("/analyze");
   const session = await getSession();
 
-  if (isDashboardPage && !session?.user) {
+  if ((isDashboardPage || analyze) && !session?.user) {
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
   const isSignInPage = request.nextUrl.pathname.startsWith("/sign-in");
   const isSignUpPage = request.nextUrl.pathname.startsWith("/sign-up");
 
-  if((isSignInPage || isSignUpPage) && session?.user){
-    return NextResponse.redirect(new URL("/dashboard", request.url))
+  if ((isSignInPage || isSignUpPage) && session?.user) {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/sign-in", "/sign-up"],
+  matcher: ["/dashboard/:path*", "/analyze", "/sign-in", "/sign-up"],
 };

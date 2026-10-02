@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { authClient } from "@/lib/auth/auth-client";
+import { signIn } from "@/lib/auth/auth-client";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -24,7 +24,7 @@ export default function SignIn() {
     setIsLoading(true);
 
     try {
-      const result = await authClient.signIn.email({
+      const result = await signIn.email({
         email,
         password,
       });

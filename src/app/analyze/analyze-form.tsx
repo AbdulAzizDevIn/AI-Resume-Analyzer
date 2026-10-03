@@ -4,12 +4,7 @@ import { FileText, Upload } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const AnalyzeForm = () => {
   const [resume, setResume] = useState<File | null>(null);
@@ -20,9 +15,7 @@ const AnalyzeForm = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleResumeChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleResumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
 
     if (!file) {
@@ -38,14 +31,23 @@ const AnalyzeForm = () => {
     setIsLoading(true);
 
     try {
-      console.log({
-        resume,
-        jobTitle,
-        company,
-        jobDescription,
+      if (!resume) {
+        return;
+      }
+      const formData = new FormData();
+
+      formData.append("resume", resume);
+      formData.append("jobTitle", jobTitle);
+      formData.append("company", company);
+      formData.append("jobDescription", jobDescription);
+
+      const res = await fetch("/api/analyze", {
+        method: "POST",
+        body: formData,
       });
 
-      // AI analysis will be added here later.
+      const data = await res.json();
+
     } finally {
       setIsLoading(false);
     }
@@ -75,9 +77,7 @@ const AnalyzeForm = () => {
                 Upload your resume
               </p>
 
-              <p className="mt-1 text-sm text-gray-500">
-                PDF files only
-              </p>
+              <p className="mt-1 text-sm text-gray-500">PDF files only</p>
 
               <input
                 id="resume"
@@ -196,8 +196,8 @@ const AnalyzeForm = () => {
             />
 
             <p className="text-xs text-gray-500">
-              Include the responsibilities, requirements, and skills listed
-              in the job posting.
+              Include the responsibilities, requirements, and skills listed in
+              the job posting.
             </p>
           </div>
         </CardContent>

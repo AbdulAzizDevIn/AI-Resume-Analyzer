@@ -1,9 +1,4 @@
-import {
-  ArrowRight,
-  Check,
-  PlayCircle,
-  Sparkles,
-} from "lucide-react";
+import { ArrowRight, Check, PlayCircle, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
@@ -63,7 +58,6 @@ const features = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900">
-
       <main>
         {/* Hero */}
         <section className="relative overflow-hidden">
@@ -93,26 +87,21 @@ export default function Home() {
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center sm:gap-4">
-                <Button
-                  asChild
-                  className="h-12 w-full rounded-[10px] bg-indigo-600 px-6 text-base font-semibold shadow-lg shadow-indigo-100 hover:bg-indigo-700 sm:h-[56px] sm:w-auto sm:px-7 sm:text-[17px]"
+                <Link
+                  href="/analyze"
+                  className="flex h-12 w-full items-center justify-center rounded-[10px] bg-indigo-600 px-6 text-base font-semibold text-white shadow-lg shadow-indigo-100 hover:bg-indigo-700 sm:h-[56px] sm:w-auto sm:px-7 sm:text-[17px]"
                 >
-                  <Link href="/analyze" className="flex items-center">
-                    <span>Analyze My Resume</span>
-                    <ArrowRight className="ml-2 h-4.5 w-4.5 sm:h-5 sm:w-5" />
-                  </Link>
-                </Button>
+                  <span>Analyze My Resume</span>
+                  <ArrowRight className="ml-2 h-4.5 w-4.5 sm:h-5 sm:w-5" />
+                </Link>
 
-                <Button
-                  asChild
-                  variant="outline"
-                  className="h-12 w-full rounded-[10px] border-gray-300 bg-white px-6 text-base font-semibold text-indigo-950 hover:bg-indigo-50 sm:h-[56px] sm:w-auto sm:px-7 sm:text-[17px]"
+                <Link
+                  href="#how-it-works"
+                  className="flex h-12 w-full items-center justify-center rounded-[10px] border border-gray-300 bg-white px-6 text-base font-semibold text-indigo-950 hover:bg-indigo-50 sm:h-[56px] sm:w-auto sm:px-7 sm:text-[17px]"
                 >
-                  <Link href="#how-it-works" className="flex items-center">
-                    <span>See How It Works</span>
-                    <PlayCircle className="ml-2 h-4 w-4 sm:h-[18px] sm:w-[18px]" />
-                  </Link>
-                </Button>
+                  <span>See How It Works</span>
+                  <PlayCircle className="ml-2 h-4 w-4 sm:h-[18px] sm:w-[18px]" />
+                </Link>
               </div>
 
               <div className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-gray-600 sm:mt-6 sm:text-sm">
@@ -320,16 +309,11 @@ export default function Home() {
               actionable AI-powered feedback.
             </p>
 
-            <div className="mt-8">
-              <Button
-                asChild
-                className="h-12 rounded-[10px] bg-indigo-600 px-6 text-base font-semibold hover:bg-indigo-700 sm:h-[52px] sm:px-7"
-              >
-                <Link href="/analyze" className="flex items-center">
+            <div className="mt-8">             
+                <Link href="/analyze" className="flex items-center h-12 rounded-[10px] bg-indigo-600 px-6 text-base font-semibold hover:bg-indigo-700 sm:h-[52px] sm:px-7">
                   Start Your Analysis
                   <ArrowRight className="ml-2 h-4.5 w-4.5" />
-                </Link>
-              </Button>
+                </Link>            
             </div>
           </div>
         </section>

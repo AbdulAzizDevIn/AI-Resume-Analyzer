@@ -1,5 +1,7 @@
 import { getSession } from "@/lib/auth/auth";
 import { prisma } from "@/lib/prisma";
+import { analyzeResumeWithAI } from "@/lib/ai-analyzer";
+import { calculateMatchScore } from "@/lib/score";
 import { PDFParse } from "pdf-parse";
 
 export async function POST(request: Request) {
@@ -71,11 +73,29 @@ export async function POST(request: Request) {
       },
     });
 
+    const aiResult = await analyzeResumeWithAI(
+      resumeText,
+      String(jobTitle || "").trim(),
+      String(company || "").trim(),
+      String(jobDescription || "").trim(),
+    );
+    console.log("AI Analysis Result:", aiResult);
+
+    const matchScore = calculateMatchScore(aiResult);
+
+    const analysisRecord = await prisma.analysis.create({
+      data:{
+        userId:session.user.id,
+        resumeId:resumeRecord.id,
+        jobDescriptionId:jobDescriptionRecord.id,
+        matchScore: matchScore,
+        result:aiResult
+      }
+    })
 
     return Response.json({
-      message: "Data received successfully",
-      resumeId: resumeRecord.id,
-      jobDescription: jobDescriptionRecord.id,
+      message: "Analysis complete successfully",
+      analysisId: analysisRecord.id,
     });
   } catch (error) {
     console.error("Resume analysis error:", error);

@@ -113,11 +113,8 @@ model Analysis {
   resumeId         String
   jobDescriptionId String
 
-  matchScore    Int
-  summary       String
-  strongMatches Json
-  missingSkills Json
-  improvements  Json
+  matchScore Int
+  result     Json
 
   createdAt DateTime @default(now())
 

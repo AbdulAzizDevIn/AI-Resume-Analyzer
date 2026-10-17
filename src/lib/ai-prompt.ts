@@ -79,6 +79,31 @@ KEYWORD ANALYSIS:
 REQUIREMENT ANALYSIS:
 
 Classify important JD requirements into the following categories.
+CATEGORY RULES:
+
+Every item in matchedRequirements, missingRequiredRequirements, and learningGaps MUST include exactly one category.
+
+- hardSkills:
+  Technical skills, programming languages, frameworks, APIs, databases, system design, infrastructure, performance, or other technical capabilities.
+
+- softSkills:
+  Communication, collaboration, teamwork, leadership, curiosity, problem-solving, learning mindset, or similar interpersonal or behavioral capabilities.
+
+- experience:
+  Professional experience, years of experience, role level, ownership, or previous work exposure requirements.
+
+- education:
+  Degree, certification, academic qualification, or other explicit education requirements.
+
+Examples:
+- "Strong programming skills in Node.js" → hardSkills
+- "Understanding of REST APIs and SQL/NoSQL" → hardSkills
+- "Strong problem-solving skills" → softSkills
+- "Collaborate with product and engineering teams" → softSkills
+- "2+ years of professional backend experience" → experience
+- "Bachelor's degree in Computer Science" → education
+
+Do not classify a future job responsibility as a missing required requirement unless the JD explicitly requires prior experience with it.
 
 1. matchedRequirements:
    Include requirements the candidate already satisfies based on explicit resume evidence.

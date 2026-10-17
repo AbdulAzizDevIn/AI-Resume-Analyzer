@@ -18,6 +18,12 @@ export const jdMatchSchema = z.object({
     matchedRequirements: z.array(
       z.object({
         requirement: z.string(),
+        category: z.enum([
+          "hardSkills",
+          "softSkills",
+          "experience",
+          "education",
+        ]),
         evidence: z.string(),
       }),
     ),
@@ -25,6 +31,12 @@ export const jdMatchSchema = z.object({
     missingRequiredRequirements: z.array(
       z.object({
         requirement: z.string(),
+        category: z.enum([
+          "hardSkills",
+          "softSkills",
+          "experience",
+          "education",
+        ]),
         reason: z.string(),
       }),
     ),
@@ -32,6 +44,12 @@ export const jdMatchSchema = z.object({
     learningGaps: z.array(
       z.object({
         requirement: z.string(),
+        category: z.enum([
+          "hardSkills",
+          "softSkills",
+          "experience",
+          "education",
+        ]),
         explanation: z.string(),
       }),
     ),

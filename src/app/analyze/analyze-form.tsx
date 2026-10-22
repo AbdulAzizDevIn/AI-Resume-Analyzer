@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { redirect, useRouter } from "next/navigation";
 
 const AnalyzeForm = () => {
   const [resume, setResume] = useState<File | null>(null);
@@ -14,6 +15,8 @@ const AnalyzeForm = () => {
   const [jobDescription, setJobDescription] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const router = useRouter();
 
   const handleResumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -47,7 +50,14 @@ const AnalyzeForm = () => {
       });
 
       const data = await res.json();
+      
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to analyze resume.");
+      }
 
+      if (data.analysisId) {
+        router.push(`/analyze/${data.analysisId}`);
+      }
     } finally {
       setIsLoading(false);
     }

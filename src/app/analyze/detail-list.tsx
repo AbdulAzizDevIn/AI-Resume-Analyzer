@@ -27,7 +27,12 @@ export default function DetailList({ title, items, variant }: DetailListProps) {
       ) : (
         <ul className="space-y-3">
           {items.map((item, index) => {
-            const detail = item.evidence ?? item.reason ?? item.explanation;
+            const detail =
+              "evidence" in item
+                ? item.evidence
+                : "reason" in item
+                  ? item.reason
+                  : item.explanation;
 
             return (
               <li

@@ -79,7 +79,7 @@ export async function POST(request: Request) {
       String(company || "").trim(),
       String(jobDescription || "").trim(),
     );
-    console.log("AI Analysis Result:", aiResult);
+    
 
     const matchScore = calculateMatchScore(aiResult);
 

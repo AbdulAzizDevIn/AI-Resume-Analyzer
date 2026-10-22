@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
-import { signUp } from "@/lib/auth/auth-client";
+import { signIn, signUp } from "@/lib/auth/auth-client";
 import { useRouter } from "next/navigation";
 
 export default function SignUp() {
@@ -35,13 +35,33 @@ export default function SignUp() {
       } else {
         router.push("/dashboard");
       }
-      
     } catch (error) {
       setError("An unexpected error occurred");
     } finally {
       setIsLoading(false);
     }
   };
+
+  const handleGoogleSignIn = async () => {
+    setError("");
+    setIsLoading(true);
+
+    try {
+      const result = await signIn.social({
+        provider: "google",
+        callbackURL: "/dashboard",
+      });
+
+      if (result.error) {
+        setError(result.error.message ?? "Google sign-in failed.");
+      }
+    } catch {
+      setError("Unable to sign in with Google.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <main className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-10">
       <div className="w-full max-w-md">
@@ -77,9 +97,11 @@ export default function SignUp() {
             <Button
               type="button"
               variant="outline"
+              disabled={isLoading}
+              onClick={handleGoogleSignIn}
               className="mt-6 h-11 w-full border-gray-300 bg-white text-sm font-medium text-gray-900 hover:bg-gray-50"
             >
-              Continue with Google
+              {isLoading ? "Connecting to Google..." : "Continue with Google"}
             </Button>
 
             <div className="my-6 flex items-center gap-3">

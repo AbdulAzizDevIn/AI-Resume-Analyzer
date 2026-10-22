@@ -11,7 +11,6 @@ import AnalysisHistory from "./analysis-history";
 
 const Dashboard = async () => {
 
-
   const session = await getSession();
 
   if (!session) {

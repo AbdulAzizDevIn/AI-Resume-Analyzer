@@ -12,12 +12,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "./ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { useEffect } from "react";
 
 const Navbar = () => {
   const router = useRouter();
   const { data: session, isPending } = useSession();
-
+  
   const handleSignOut = async () => {
     const result = await signOut();
 
@@ -27,6 +28,7 @@ const Navbar = () => {
       alert("Error signing out");
     }
   };
+  
 
   return (
     <>
@@ -69,8 +71,12 @@ const Navbar = () => {
                     }
                   >
                     <Avatar className="h-8 w-8">
-                      <AvatarFallback className="bg-primary text-white">
-                        {session?.user.name[0].toUpperCase()}
+                      <AvatarImage
+                        src={session.user.image ?? undefined}
+                        alt={session.user.name}
+                      />
+                      <AvatarFallback className="bg-indigo-600 text-white">
+                        {session.user.name?.[0]?.toUpperCase() ?? "U"}
                       </AvatarFallback>
                     </Avatar>
                   </DropdownMenuTrigger>
@@ -114,7 +120,7 @@ const Navbar = () => {
 
                 <Link
                   href="/sign-up"
-                  className="h-10 rounded-[9px] bg-black px-4 text-sm font-semibold text-white hover:bg-gray-800 sm:px-5"
+                  className="inline-flex h-10 items-center justify-center gap-2 rounded-[9px] bg-indigo-600 px-4 text-sm font-semibold text-white transition-colors hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 sm:px-5"
                 >
                   Get Started
                 </Link>

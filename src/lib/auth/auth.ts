@@ -5,7 +5,7 @@ import { headers } from "next/headers";
 
 export const auth = betterAuth({
   appName: "AI Resume Analyzer",
-  
+
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
@@ -13,13 +13,25 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    },
+  },
+  account: {
+    accountLinking: {
+      enabled: true,
+      trustedProviders: ["google"],
+    },
+  },
 
   baseURL: process.env.BETTER_AUTH_URL,
 });
 
 export async function getSession() {
   const result = await auth.api.getSession({
-    headers:await headers()
+    headers: await headers(),
   });
 
   return result;

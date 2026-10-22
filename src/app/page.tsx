@@ -309,11 +309,14 @@ export default function Home() {
               actionable AI-powered feedback.
             </p>
 
-            <div className="mt-8">             
-                <Link href="/analyze" className="flex items-center h-12 rounded-[10px] bg-indigo-600 px-6 text-base font-semibold hover:bg-indigo-700 sm:h-[52px] sm:px-7">
-                  Start Your Analysis
-                  <ArrowRight className="ml-2 h-4.5 w-4.5" />
-                </Link>            
+            <div className="mt-8">
+              <Link
+                href="/analyze"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-[10px] bg-indigo-600 px-6 text-base font-semibold text-white transition-colors hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 sm:h-[52px] sm:px-7"
+              >
+                Start Your Analysis
+                <ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true" />
+              </Link>
             </div>
           </div>
         </section>

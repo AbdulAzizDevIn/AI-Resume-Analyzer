@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { analyzeResumeWithAI } from "@/lib/ai-analyzer";
 import { calculateMatchScore } from "@/lib/score";
 import { PDFParse } from "pdf-parse";
+import { CanvasFactory } from "pdf-parse/worker";
 
 export async function POST(request: Request) {
   try {
@@ -36,6 +37,7 @@ export async function POST(request: Request) {
 
     const parse = new PDFParse({
       data: buffer,
+      CanvasFactory,
     });
 
     const result = await parse.getText();
@@ -79,19 +81,18 @@ export async function POST(request: Request) {
       String(company || "").trim(),
       String(jobDescription || "").trim(),
     );
-    
 
     const matchScore = calculateMatchScore(aiResult);
 
     const analysisRecord = await prisma.analysis.create({
-      data:{
-        userId:session.user.id,
-        resumeId:resumeRecord.id,
-        jobDescriptionId:jobDescriptionRecord.id,
+      data: {
+        userId: session.user.id,
+        resumeId: resumeRecord.id,
+        jobDescriptionId: jobDescriptionRecord.id,
         matchScore: matchScore,
-        result:aiResult
-      }
-    })
+        result: aiResult,
+      },
+    });
 
     return Response.json({
       message: "Analysis complete successfully",

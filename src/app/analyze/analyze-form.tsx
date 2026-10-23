@@ -218,7 +218,7 @@ const AnalyzeForm = () => {
         <Button
           type="submit"
           disabled={isLoading || !resume}
-          className="h-11 bg-indigo-600 px-6 text-sm font-semibold text-white hover:bg-indigo-700"
+          className="h-11 bg-indigo-600 cursor-pointer px-6 text-sm font-semibold text-white hover:bg-indigo-700"
         >
           {isLoading ? "Analyzing..." : "Analyze Resume"}
         </Button>

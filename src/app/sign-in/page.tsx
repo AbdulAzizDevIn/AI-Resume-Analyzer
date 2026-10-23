@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "@/lib/auth/auth-client";
+import Image from "next/image";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -93,15 +94,30 @@ export default function SignIn() {
           </CardHeader>
 
           <CardContent className="px-6 pb-7 sm:px-8">
-            <Button
-              type="button"
-              variant="outline"
-              disabled={isLoading}
-              onClick={handleGoogleSignIn}
-              className="mt-6 h-11 w-full border-gray-300 bg-white text-sm font-medium text-gray-900 hover:bg-gray-50 cursor-pointer"
-            >
-              {isLoading ? "Connecting to Google..." : "Continue with Google"}
-            </Button>
+            <div>
+              <Button
+                type="button"
+                variant="outline"
+                disabled={isLoading}
+                onClick={handleGoogleSignIn}
+                className="mt-6 h-11 w-full border-gray-300 bg-white text-sm font-medium text-gray-900 hover:bg-gray-50 cursor-pointer"
+              >
+                <Image
+                  src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                  alt=""
+                  width={20}
+                  height={20}
+                  aria-hidden="true"
+                  className="mr-2"
+                />
+                {isLoading ? "Connecting to Google..." : "Continue with Google"}
+              </Button>
+              {error && (
+                <p role="alert" className="text-sm text-red-600">
+                  {error}
+                </p>
+              )}
+            </div>
 
             <div className="my-6 flex items-center gap-3">
               <div className="h-px flex-1 bg-gray-200" />

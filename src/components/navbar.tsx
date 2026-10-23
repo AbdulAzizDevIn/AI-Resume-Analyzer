@@ -13,7 +13,6 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { useEffect } from "react";
 
 const Navbar = () => {
   const router = useRouter();
